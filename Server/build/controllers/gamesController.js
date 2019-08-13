@@ -58,8 +58,10 @@ class GamesController {
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
+            delete req.body.create_at;
             yield database_1.default.query('UPDATE games set ? where id = ?', [req.body, id]);
             res.json({ message: "Game was updated" });
+            console.log(req.body);
         });
     }
 }

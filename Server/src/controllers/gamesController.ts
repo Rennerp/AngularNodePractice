@@ -38,8 +38,11 @@ class GamesController{
     //Actualizar un articulo
     public async update(req:Request,res: Response):Promise <void>{
         const {id} = req.params;
-        await db.query('UPDATE games set ? where id = ?',[req.body, id]);
-        res.json({message:"Game was updated"})
+        delete req.body.create_at;
+        await db.query('UPDATE games set ? where id = ?',[req.body, id])
+            res.json({message:"Game was updated"});
+            console.log(req.body);
+    
     }
 }
 
